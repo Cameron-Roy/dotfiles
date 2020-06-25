@@ -1,0 +1,7 @@
+#!/bin/sh
+
+FREQ=$(lscpu | grep "CPU MHz" | sed 's/^.*://' | sed 's/ //g')
+
+FFREQ=$(awk "BEGIN {printf \"%.2f\n\", $FREQ/1000}")
+
+echo $FFREQ"GHz"

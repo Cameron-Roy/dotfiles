@@ -1,0 +1,11 @@
+#!/bin/sh
+
+BAT=$(upower -d | grep percentage | sed 's/^.*://' | sed 's/ //g' | sed -n 1p)
+TLEFT=$(upower -d | grep "time to" | sed 's/^.*://' | sed 's/ //g' | sed 's/ours//g' | sed 's/inutes//g' |sed -n 1p)
+
+echo "$BAT / $TLEFT"
+
+[ ${BAT%?} -le 5 ] && exit 33
+[ ${BAT%?} -le 20 ] && echo "#FF8000"
+
+exit 0

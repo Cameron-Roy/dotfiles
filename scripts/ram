@@ -1,0 +1,10 @@
+#!/bin/sh
+
+TOTALM=$(cat /proc/meminfo | grep "MemTotal" | sed 's/^.*://g' | sed 's/ //g' | sed 's/..$//')
+FREEM=$(cat /proc/meminfo | grep "MemAvailable" | sed 's/^.*://g' | sed 's/ //g' | sed 's/..$//')
+
+FTOTALM=$(awk "BEGIN {printf \"%.2f\n\", $TOTALM/1000000}")
+FFREEM=$(awk "BEGIN {printf \"%.2f\n\", ($TOTALM-$FREEM)/1000000}")
+
+echo "FREE: "$FFREEM" / USED: "$FTOTALM
+

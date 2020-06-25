@@ -1,0 +1,11 @@
+#!/bin/sh
+
+TOGGLE=$HOME/.config/i3blocks/.timeToggle
+
+if [ ! -e $TOGGLE ]; then
+        touch $TOGGLE
+        echo $(date +"%I:%M:%S %p")
+else
+        rm $TOGGLE
+        echo $(date +"%Y/%m/%d")
+fi
